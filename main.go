@@ -27,7 +27,7 @@ type DomainInfo struct {
 	Expires     time.Time `json:"expires"`
 	DNSRecords  DNSData   `json:"dns_records"`
 	LastQueried time.Time `json:"last_queried"`
-	querySource string
+	QuerySource string    `json:"query_source"` // JSON 태그 추가 및 필드 이름 대문자로 변경
 }
 
 type DNSData struct {
@@ -163,7 +163,7 @@ func rdapLookup(domain string) (DomainInfo, error) {
 		Nameservers: parseNameservers(response.Nameservers),
 		DNSSEC:      dnssec,
 		Status:      response.Status,
-		querySource: "RDAP",
+		QuerySource: "RDAP", // 수정된 부분
 	}
 
 	// 이벤트 날짜 처리
@@ -205,7 +205,7 @@ func whoisLookup(domain string) (DomainInfo, error) {
 		Registrar:   parsed.Registrar.Name,
 		Nameservers: parsed.Domain.NameServers,
 		Status:      parsed.Domain.Status,
-		querySource: "WHOIS",
+		QuerySource: "WHOIS", // 수정된 부분
 	}
 
 	// 개선된 날짜 파싱 적용
