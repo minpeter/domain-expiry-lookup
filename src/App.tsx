@@ -838,15 +838,3 @@ export default function App() {
     </div> // End of Main Container
   );
 }
-
-// --- Optional: CSS for fade-in animation ---
-/* Add this to your global CSS file (e.g., index.css or App.css) */
-/*
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.animate-fade-in {
-  animation: fadeIn 0.5s ease-out forwards;
-}
-*/
