@@ -693,9 +693,9 @@ export default function App() {
                   </span>
                 </p>
                 {/* DNSSEC */}
-                <p>
+                <p className="flex items-center gap-1">
                   <span className="font-medium text-gray-600 dark:text-gray-400 flex items-center mb-0.5 text-xs">
-                    {detailIcons.DNSSEC} DNSSEC
+                    {detailIcons.DNSSEC} DNSSEC:
                   </span>
                   <span
                     className={`ml-1 font-semibold ${
