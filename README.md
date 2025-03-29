@@ -31,14 +31,6 @@ npm run dev
 npm run build
 ```
 
-## ESLint Configuration
-
-This project includes ESLint configuration for TypeScript with:
-
-- Type-aware lint rules enabled
-- React-specific lint rules
-- TypeScript type checking integration
-
 ## License
 
 MIT License
