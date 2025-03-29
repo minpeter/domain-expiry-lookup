@@ -2,7 +2,7 @@
 
 A web application for checking domain expiration dates.
 
-![image](https://github.com/user-attachments/assets/39812fde-4043-4e3d-97a0-bfa8cab0b92c)
+![image](https://github.com/user-attachments/assets/cd953784-a011-421e-adf4-f63a3cf11807)
 
 
 ## Tech Stack
