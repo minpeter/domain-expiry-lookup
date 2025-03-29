@@ -2,6 +2,9 @@
 
 A web application for checking domain expiration dates.
 
+![image](https://github.com/user-attachments/assets/39812fde-4043-4e3d-97a0-bfa8cab0b92c)
+
+
 ## Tech Stack
 
 - React + TypeScript
