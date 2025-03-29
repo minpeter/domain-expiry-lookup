@@ -1,7 +1,6 @@
-package main
+package lib
 
 import (
-	"encoding/json"
 	"fmt"
 	"net"
 	"net/http"
@@ -50,17 +49,15 @@ var (
 	cacheMutex = &sync.RWMutex{}
 )
 
-func main() {
-	domain := "minpeter.uk"
-
+func DnsLookup(domain string) (DomainInfo, error) {
+	// Call GetDomainInfo which already does the lookup
 	info, err := GetDomainInfo(domain)
 	if err != nil {
-		fmt.Printf("Error: %v\n", err)
-		return
+		return DomainInfo{}, err
 	}
 
-	jsonData, _ := json.MarshalIndent(info, "", "  ")
-	fmt.Printf("Domain Report for %s:\n%s\n", domain, string(jsonData))
+	// Return the domain info and nil error
+	return info, nil
 }
 
 // 개선된 날짜 파싱 함수 --------------------------------------------------------
