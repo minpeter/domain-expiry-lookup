@@ -120,9 +120,6 @@ const MilestoneProgressBar: React.FC<MilestoneProgressBarProps> = ({
   // This now stores the *VISUAL* position (e.g., 15%) if shown, otherwise irrelevant
   const [updateVisualPositionPercent, setUpdateVisualPositionPercent] =
     useState(VISUAL_SPLIT_PERCENT);
-  // This stores the *ACTUAL* position based on time, needed to check if update is active
-  // const [updateActualPositionPercent, setUpdateActualPositionPercent] =
-  //   useState(50);
   const [updateIsActive, setUpdateIsActive] = useState(false);
   const [formattedUpdateDate, setFormattedUpdateDate] = useState("");
 
@@ -172,7 +169,6 @@ const MilestoneProgressBar: React.FC<MilestoneProgressBarProps> = ({
             0.1,
             Math.min(99.9, actualPosition)
           );
-          // setUpdateActualPositionPercent(clampedActualPosition);
 
           // Check if the current progress passes the ACTUAL update point
           setUpdateIsActive(clampedPercentage >= clampedActualPosition);
@@ -528,7 +524,7 @@ export default function App() {
   // --- JSX Rendering ---
   return (
     // Main container with padding, background colors for light/dark mode
-    <div className="max-w-4xl mx-auto p-4 md:p-6 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen font-sans">
+    <div className="max-w-4xl mx-auto p-4 md:p-6 min-h-screen font-sans">
       {/* Application Title */}
       <h1 className="text-3xl font-bold mb-6 text-center text-gray-800 dark:text-gray-200">
         Domain Expiry Lookup
