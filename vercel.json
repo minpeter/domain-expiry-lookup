@@ -4,9 +4,19 @@
     {
       "src": "api/**/*.go",
       "use": "@vercel/go"
+    },
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
     }
   ],
   "routes": [
+    {
+      "handle": "filesystem"
+    },
     {
       "src": "/(.*)",
       "dest": "/api/index.go"
