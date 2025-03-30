@@ -14,6 +14,11 @@ import {
   FaHourglassHalf, // 남은 시간 표시용 아이콘 (선택 사항)
 } from "react-icons/fa";
 
+import { Search } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import RegistrationDetails from "./components/registration-details";
+
 // --- Helper: Date comparison ---
 const datesAreSignificantlyDifferent = (
   dateStr1: string | undefined | null,
@@ -528,36 +533,37 @@ export default function App() {
   // --- JSX Rendering ---
   return (
     // Main container with padding, background colors for light/dark mode
-    <div className="max-w-4xl mx-auto p-4 md:p-6 min-h-screen font-sans">
-      {/* Application Title */}
-      <h1 className="text-3xl font-bold mb-6 text-center text-gray-800 dark:text-gray-200">
-        Domain Expiry Lookup
-      </h1>
+    <div className="max-w-4xl mx-auto p-4 md:p-6 min-h-screen font-sans space-y-8">
+      <div className="text-center space-y-2">
+        <h1 className="text-3xl md:text-4xl font-bold">Domain Expiry Lookup</h1>
+        <p className="text-slate-400 text-sm md:text-base">
+          Check registration status and expiration details for any domain
+        </p>
+      </div>
 
-      {/* Domain Input Form */}
-      <form onSubmit={handleSubmit} className="mb-6 max-w-xl mx-auto">
-        <div className="flex flex-col sm:flex-row gap-2">
-          {/* Input Field */}
-          <input
+      <form onSubmit={handleSubmit} className="flex gap-2">
+        <div className="relative flex-1">
+          <Input
+            className="bg-white border-gray-200 text-gray-800 h-12 pl-4 pr-10 rounded-xl focus-visible:ring-blue-500"
             type="text"
             value={domain}
             onChange={(e) => setDomain(e.target.value)}
             placeholder="Enter domain (e.g. example.com)"
-            className="flex-1 p-2.5 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
             required // HTML5 required attribute
             aria-label="Domain name input"
           />
-          {/* Submit Button */}
-          <button
-            type="submit"
-            // Disable button while loading data
-            disabled={isLoading}
-            className={`bg-blue-600 text-white px-5 py-2.5 rounded-md hover:bg-blue-700 dark:hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900 disabled:opacity-60 disabled:cursor-not-allowed transition-all duration-200 ease-in-out font-medium`}
-          >
-            {/* Show different text based on loading state */}
-            {isLoading && submittedDomain ? "Searching..." : "Search"}
-          </button>
+          <div className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400">
+            <Search size={18} />
+          </div>
         </div>
+        <Button
+          type="submit"
+          // Disable button while loading data
+          disabled={isLoading}
+          className="h-12 px-6 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-medium"
+        >
+          Search
+        </Button>
       </form>
 
       {/* Loading State Indicator */}
@@ -667,54 +673,12 @@ export default function App() {
           {/* === Details Grid (Registration & DNS) === */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 border-t border-gray-200 dark:border-gray-700 pt-6">
             {/* --- Registration Details Card --- */}
-            <div className="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg shadow-sm border border-gray-200 dark:border-gray-600">
-              {/* Card Title with Icon */}
-              <h3 className="font-semibold mb-3 text-base flex items-center text-gray-700 dark:text-gray-300">
-                {detailIcons.Registrar} Registration Details
-              </h3>
-              {/* Details List */}
-              <div className="space-y-2.5 text-sm text-gray-800 dark:text-gray-200">
-                {/* Registrar */}
-                <p>
-                  <span className="font-medium text-gray-600 dark:text-gray-400 block text-xs mb-0.5">
-                    Registrar
-                  </span>
-                  {data.registrar || "N/A"}
-                </p>
-                {/* Status */}
-                <p>
-                  <span className="font-medium text-gray-600 dark:text-gray-400 flex items-center mb-0.5 text-xs">
-                    {detailIcons.Status} Status
-                  </span>
-                  <span className="ml-1">
-                    {Array.isArray(data.status)
-                      ? data.status.join(", ")
-                      : data.status || "N/A"}
-                  </span>
-                </p>
-                {/* DNSSEC */}
-                <p className="flex items-center gap-1">
-                  <span className="font-medium text-gray-600 dark:text-gray-400 flex items-center mb-0.5 text-xs">
-                    {detailIcons.DNSSEC} DNSSEC:
-                  </span>
-                  <span
-                    className={`ml-1 font-semibold ${
-                      data.dnssec
-                        ? "text-green-600 dark:text-green-400"
-                        : "text-red-600 dark:text-red-400"
-                    }`}
-                  >
-                    {/* Display Enabled/Disabled/N/A based on dnssec value */}
-                    {data.dnssec === true
-                      ? "Enabled"
-                      : data.dnssec === false
-                      ? "Disabled"
-                      : "N/A"}
-                  </span>
-                </p>
-              </div>
-            </div>
 
+            <RegistrationDetails
+              registrar={data.registrar}
+              statusList={data.status}
+              dnssecEnabled={data.dnssec}
+            />
             {/* --- DNS Information Card --- */}
             <div className="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg shadow-sm border border-gray-200 dark:border-gray-600">
               {/* Card Title with Icon */}
