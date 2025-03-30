@@ -30,8 +30,8 @@ export default function RegistrationDetails({
   };
 
   return (
-    <Card className="max-w-md bg-gray-900 text-gray-100 border-gray-800 shadow-xl overflow-hidden">
-      <CardHeader className="py-4 px-5 border-b border-gray-800">
+    <Card className="bg-gray-900 text-gray-100 border-gray-800 shadow-xl overflow-hidden">
+      <CardHeader className="border-b border-gray-800">
         <CardTitle className="flex items-center gap-2.5 text-base font-medium">
           <FileText className="h-4.5 w-4.5 text-gray-300" />
           <span>Registration Details</span>
