@@ -14,18 +14,20 @@ export default function RegistrationDetails({
   // 상태에 따른 배지 스타일 결정 함수
   const getStatusStyle = (status: string) => {
     // 상태 문자열에 따라 다른 스타일 적용
-    if (status.includes("hold")) {
-      return "bg-amber-900/30 text-amber-200 border-amber-700/40 hover:bg-amber-900/40";
-    } else if (status.includes("renew")) {
-      return "bg-sky-900/30 text-sky-200 border-sky-700/40 hover:bg-sky-900/40";
-    } else if (status.includes("delete")) {
-      return "bg-rose-900/30 text-rose-200 border-rose-700/40 hover:bg-rose-900/40";
-    } else if (status.includes("transfer")) {
-      return "bg-violet-900/30 text-violet-200 border-violet-700/40 hover:bg-violet-900/40";
-    } else if (status.includes("update")) {
-      return "bg-emerald-900/30 text-emerald-200 border-emerald-700/40 hover:bg-emerald-900/40";
-    } else {
-      return "bg-gray-800/60 text-gray-300 border-gray-700/40 hover:bg-gray-800/80";
+    const statusLower = status.toLowerCase();
+    switch (true) {
+      case statusLower.includes("hold"):
+        return "bg-amber-900/30 text-amber-200 border-amber-700/40 hover:bg-amber-900/40";
+      case statusLower.includes("renew"):
+        return "bg-sky-900/30 text-sky-200 border-sky-700/40 hover:bg-sky-900/40";
+      case statusLower.includes("delete"):
+        return "bg-rose-900/30 text-rose-200 border-rose-700/40 hover:bg-rose-900/40";
+      case statusLower.includes("transfer"):
+        return "bg-violet-900/30 text-violet-200 border-violet-700/40 hover:bg-violet-900/40";
+      case statusLower.includes("update"):
+        return "bg-emerald-900/30 text-emerald-200 border-emerald-700/40 hover:bg-emerald-900/40";
+      default:
+        return "bg-gray-800/60 text-gray-300 border-gray-700/40 hover:bg-gray-800/80";
     }
   };
 
