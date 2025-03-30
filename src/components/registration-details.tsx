@@ -11,9 +11,9 @@ export default function RegistrationDetails({
   statusList: string[];
   dnssecEnabled: boolean;
 }) {
-  // 상태에 따른 배지 스타일 결정 함수
+  // Function to determine badge style based on status
   const getStatusStyle = (status: string) => {
-    // 상태 문자열에 따라 다른 스타일 적용
+    // Apply different styles based on status string
     const statusLower = status.toLowerCase();
     switch (true) {
       case statusLower.includes("hold"):
@@ -41,7 +41,7 @@ export default function RegistrationDetails({
       </CardHeader>
       <CardContent className="p-0">
         <div className="divide-y divide-gray-800/60">
-          {/* Registrar 행 */}
+          {/* Registrar row */}
           <div className="flex items-center px-5 py-4">
             <div className="w-1/3">
               <p className="text-sm text-gray-400 font-medium">Registrar</p>
@@ -51,13 +51,13 @@ export default function RegistrationDetails({
             </div>
           </div>
 
-          {/* Status 행 - 동적 상태 목록 + DNSSEC */}
+          {/* Status row - dynamic status list + DNSSEC */}
           <div className="flex px-5 py-4">
             <div className="w-1/3">
               <p className="text-sm text-gray-400 font-medium pt-1">Status</p>
             </div>
             <div className="w-2/3 flex flex-wrap justify-end gap-2">
-              {/* 동적 상태 목록 렌더링 */}
+              {/* Render dynamic status list */}
               {statusList.map((status, index) => (
                 <Badge
                   key={index}
@@ -70,7 +70,7 @@ export default function RegistrationDetails({
                 </Badge>
               ))}
 
-              {/* DNSSEC 상태 (아이콘 포함) */}
+              {/* DNSSEC status (with icon) */}
               {dnssecEnabled ? (
                 <Badge
                   variant="outline"

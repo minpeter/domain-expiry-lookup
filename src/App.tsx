@@ -11,7 +11,7 @@ import {
   FaLock,
   FaPencilAlt,
   FaQuestionCircle,
-  FaHourglassHalf, // 남은 시간 표시용 아이콘 (선택 사항)
+  FaHourglassHalf,
 } from "react-icons/fa";
 
 import { Search } from "lucide-react";
